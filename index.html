@@ -3,7 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
     <title>Age Calcualtor</title>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="card">
+        <form class="card__form" id="age-form">
+          <div class="card__inputContainer">
+            <label for="day" class="card__label">Day</label>
+            <input
+              id="day"
+              name="day"
+              type="number"
+              class="card__input"
+              min="0"
+              placeholder="DD"
+            />
+            <span class="card__errorMessage">Must be a valid day</span>
+          </div>
+          <div class="card__inputContainer">
+            <label for="month" class="card__label">Month</label>
+            <input
+              id="month"
+              name="month"
+              type="number"
+              class="card__input"
+              min="0"
+              placeholder="MM"
+            />
+            <span class="card__errorMessage">Must be a valid month</span>
+          </div>
+          <div class="card__inputContainer">
+            <label for="year" class="card__label">Year</label>
+            <input
+              id="year"
+              name="year"
+              type="number"
+              class="card__input"
+              min="0"
+              placeholder="YYYY"
+            />
+            <span class="card__errorMessage">Must be a valid year</span>
+          </div>
+        </form>
+        <div class="card__separator">
+          <button class="card__button">Calculate</button>
+        </div>
+        <div class="card__result">
+          <span class="card__resultLabel">You are</span
+          ><span class="card__resultValue"> -- </span
+          ><span class="card__resultLabel">Years old</span>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
