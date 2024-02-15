@@ -126,11 +126,11 @@
   color: var(--color-purple);
 }
 
-.warningBorder {
+.card__input--error {
   border: 1px solid var(--color-red);
 }
 
-.warningMessage {
+.card__input--error + .card__errorMessage {
   opacity: 1;
   visibility: visible;
 }
