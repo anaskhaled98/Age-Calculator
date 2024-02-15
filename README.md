@@ -1,6 +1,6 @@
 # Age Calculator 
 
-*Age calculator* is a project designed to calculate age.
+*Age calculator* is a project designed to calculate ages.
 
 ## Usage
 The user will enter his birth date and the program will execute his age in years automatically.
