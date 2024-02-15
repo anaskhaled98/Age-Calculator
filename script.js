@@ -1,19 +1,32 @@
 const inputs = document.querySelectorAll("[type='number']");
 const calculateButton = document.querySelector(".card__button");
+const dayElement = document.querySelector("[name='day']");
+const monElement = document.querySelector("[name='month']");
+const yearElement = document.querySelector("[name='year']");
+const resultValue = document.querySelector(".card__resultValue");
+const currentYear = new Date().getFullYear();
+const regexForDays = /^(0?[1-9]|[1-2][0-9]|3[0-1])$/;
+const regexForMonth = /^(0?[1-9]|1[0-2])$/;
+const regexForYears = new RegExp(`^([1-${currentYear}])$`);
 
-const validationFunction = (element) =>
+// Validation
+
+const validationFunction = (element,regex) =>
 {
-    if(element.value === '' || element.value === '0') 
+    if(!regex.test(element.value)) 
     {   
         element.classList.add("warningBorder");
         element.nextElementSibling.classList.add("warningMessage");
+        return false;
     }
     else {
         element.classList.remove("warningBorder");
         element.nextElementSibling.classList.remove("warningMessage");
+        return true;
     }
 }
 
+ // Get Date
 function calculateAge(year,month,day) {
     
     const today = new Date();
@@ -22,33 +35,27 @@ function calculateAge(year,month,day) {
     const monDiff = today.getMonth() - userDate.getMonth();
     const dayDiff = today.getDay() - userDate.getDay();
     
-    if((year === '' || year === '0' || year > today.getFullYear()) || (month === '' || month === '0') || (day === '' || day === '0' || day > '31')) {
-        return "--";
-    }
-
     if(monDiff < 0 || (monDiff === 0 &&  dayDiff < 0))
     age--;
 
     return age;
 }
 
-const onClickhandler = () => {
-    const dayElement = document.querySelector("[name='day']");
-    const monElement = document.querySelector("[name='month']");
-    const yearElement = document.querySelector("[name='year']");
-    const resultValue = document.querySelector(".card__resultValue");
-    
-    // Validation
-    inputs.forEach(validationFunction);
-    
-    // Get Date
+const onClickHandler = () => {
+    validationFunction(dayElement,regexForDays);
+    validationFunction(monElement,regexForMonth);
+    validationFunction(yearElement,regexForYears);
+
+
+    if(validationFunction(dayElement,regexForDays) && validationFunction(monElement,regexForMonth)){  
     resultValue.textContent = calculateAge(yearElement.value,monElement.value,dayElement.value);
-       
+    }
+
     };
     inputs.forEach((item) => {
     item.addEventListener("keydown", (event) => {
-        if(event.key === "Enter") onClickhandler();
+        if(event.key === "Enter") onClickHandler();
     })
 })
 
-calculateButton.addEventListener("click", onClickhandler);
+calculateButton.addEventListener("click", onClickHandler);
